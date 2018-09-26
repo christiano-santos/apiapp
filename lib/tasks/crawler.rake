@@ -6,14 +6,14 @@ namespace :crawler do
       puts "entrando no metodo"
       url_base = 'https://www.instagram.com/'
       browser =  Watir::Browser.new :chrome, headless: true
-      imgs =  Watir::Browser.new :chrome, headless: true #tentar remover esta instancia do Browser
+      imgs =  Watir::Browser.new :chrome, headless: true 
       imagens = ""
       titulo = ""
       anuncio_img = ""
       locais = { 1 => ["kangacoteresina", "cajuinashowsthe"],
                  2 => ["seubotecoteresina/?hl=pt-br"],
                  3 => ["la_ganadaria/?hl=pt-br", "baiaodedoisthe", "texanopicanharia/?hl=pt-br"]}  
-      #Dir.chdir("#{Rails.root}/public/anuncios")
+      Dir.chdir("#{Rails.root}/public/anuncios")
       locais.each_pair do |key,value|
         value.each { |local|  
           puts "********************"
@@ -33,11 +33,12 @@ namespace :crawler do
             nome = nome[0,20]
             src = imagens[i].src
             imgs.goto src
-            #File.write(nome+".jpg", imgs.image().to_jpg_base64)
-            anuncio_img = imgs.image().to_jpg_base64
-            #anuncio_img = Base64.encode64(open("#{Rails.root}/public/anuncios/#{nome}.jpg"){ |io| io.read })
-            Ad.create(category_id: categoria, establishment: estabelecimento, description: nome, image: anuncio_img)
+            File.write(nome+".jpg", imgs.image().to_jpg_base64)
+            anuncio_img = open("#{Rails.root}/public/anuncios/#{nome}.jpg")
+            ad = Ad.new(category_id: categoria, establishment: estabelecimento, description: nome, image: anuncio_img)
+            ad.save
             sleep(5)
+            File.delete(nome+".jpg")
             i = i + 1
           end
         }

@@ -3,13 +3,6 @@ class AdsController < ApplicationController
     before_action :authenticate_user!, only: [:show]
     
     def create(ad) 
-        puts "entrando no controller"
-        puts "Exibindo anuncio antes de salvar no banco:"
-        puts ad.category_id
-        puts ad.establishment
-        puts ad.description
-        puts ad.image
-        puts "Salvando anuncio:"
         @ads = Ad.new()
         @ads = ad
         if @ads.save
@@ -19,5 +12,9 @@ class AdsController < ApplicationController
             puts " Falha ao salvar anuncio"
             puts errors: @ads.errors
         end
+    end
+    private
+    def user_params
+        params.require(:user).permit(:category_id, :establishment, :description, :image)
     end
 end
