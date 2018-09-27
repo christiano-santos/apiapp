@@ -33,9 +33,14 @@ gem 'nokogiri', '~> 1.8', '>= 1.8.4'
 gem 'mechanize', '~> 2.7', '>= 2.7.5'
 #download de imagens
 gem 'watir-get-image-content', '~> 0.0.4'
-gem 'whenever', require: false
+#gem 'whenever', require: false
 gem 'selenium-webdriver'
 gem 'chromedriver-helper'
+
+# ⚡ A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps https://github.com/amatsuda
+gem 'kaminari'
+# Link header pagination for Rails and Grape APIs. 
+gem 'api-pagination'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
@@ -67,6 +72,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'whenever', require: false
 end
 
 

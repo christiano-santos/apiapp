@@ -3,4 +3,6 @@ class Ad < ApplicationRecord
    # mount_uploader :image, ImageUploader
     belongs_to :category
 
+   paginates_per 5
+
 end

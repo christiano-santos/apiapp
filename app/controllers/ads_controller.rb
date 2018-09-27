@@ -1,6 +1,11 @@
 class AdsController < ApplicationController
     #responde_to :json
     before_action :authenticate_user!, only: [:show]
+
+    def index
+	@ad = Ad.all.page(params[:page])
+	paginete json: @ad
+    end
     
     def create(ad) 
         @ads = Ad.new()
