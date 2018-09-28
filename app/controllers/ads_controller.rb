@@ -4,7 +4,7 @@ class AdsController < ApplicationController
 
     def index
 	@ad = Ad.all.page(params[:page])
-	paginete json: @ad
+	paginate json: @ad
     end
     
     def create(ad) 

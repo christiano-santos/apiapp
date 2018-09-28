@@ -13,7 +13,7 @@ namespace :crawler do
       locais = { 1 => ["kangacoteresina", "cajuinashowsthe"],
                  2 => ["seubotecoteresina/?hl=pt-br"],
                  3 => ["la_ganadaria/?hl=pt-br", "baiaodedoisthe", "texanopicanharia/?hl=pt-br"]}  
-      Dir.chdir("#{Rails.root}/public/anuncios")
+      Dir.chdir("/home/christiano/Documentos/TccApi/apiapp/public/anuncios")
       locais.each_pair do |key,value|
         value.each { |local|  
           puts "********************"
@@ -30,15 +30,16 @@ namespace :crawler do
             puts titulo.text
             estabelecimento = titulo.text
             nome = imagens[i].alt
+            descricao = nome
             nome = nome[0,20]
             src = imagens[i].src
             imgs.goto src
-            File.write(nome+".jpg", imgs.image().to_jpg_base64)
-            anuncio_img = open("#{Rails.root}/public/anuncios/#{nome}.jpg")
-            ad = Ad.new(category_id: categoria, establishment: estabelecimento, description: nome, image: anuncio_img)
+            File.write("#{nome}.png", imgs.image().to_png.force_encoding(Encoding::UTF_8))
+            anuncio_img = open("#{Rails.root}/public/anuncios/#{nome}.png")
+            ad = Ad.new(category_id: categoria, establishment: estabelecimento, description: descricao, image: anuncio_img)
             ad.save
             sleep(5)
-            File.delete(nome+".jpg")
+            File.delete("#{nome}.png")
             i = i + 1
           end
         }
