@@ -1,10 +1,10 @@
 class AdsController < ApplicationController
-    #responde_to :json
-    before_action :authenticate_user!, only: [:show]
+    before_action :authenticate_user!, only: [:index]
 
     def index
-	@ad = Ad.all.page(params[:page])
-	paginate json: @ad
+	    @ad = Ad.all.page(params[:page])
+        paginate json: @ad
+    
     end
     
     def create(ad) 

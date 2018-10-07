@@ -34,5 +34,6 @@ module Apiapp
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::Attack
     config.i18n.default_locale = "pt-BR"
+
   end
 end

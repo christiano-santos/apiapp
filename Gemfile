@@ -36,6 +36,7 @@ gem 'watir-get-image-content', '~> 0.0.4'
 #gem 'whenever', require: false
 gem 'selenium-webdriver'
 gem 'chromedriver-helper'
+gem 'rack-cors', :require => 'rack/cors'
 
 # ⚡ A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps https://github.com/amatsuda
 gem 'kaminari'
