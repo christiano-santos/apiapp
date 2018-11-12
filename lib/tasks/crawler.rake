@@ -13,7 +13,7 @@ namespace :crawler do
       locais = { 1 => ["kangacoteresina", "cajuinashowsthe"],
                  2 => ["seubotecoteresina/?hl=pt-br"],
                  3 => ["la_ganadaria/?hl=pt-br", "baiaodedoisthe", "texanopicanharia/?hl=pt-br"]}  
-      Dir.chdir("/home/christiano/Documentos/TccApi/apiapp/public/anuncios")
+      Dir.chdir("#{Rails.root}/public/anuncios")
       locais.each_pair do |key,value|
         value.each { |local|  
           puts "********************"
